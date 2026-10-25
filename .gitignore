@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# 本机工具状态（不是项目内容，跟着机器走）
+.codely-cli/
+CODELY.md
+
+# 老师网页自检要用的 Chromium（13 MB）：跑 bash scripts/web-test.sh 会自己装到 .webtest/
+.webtest/
+node_modules/
+
+# 后台运行时数据：数据库和头显画面帧。首次启动由 server/src/db.js 自己建库并写种子数据
+server/data/
+
+# Unity / 团结引擎的本地缓存与自动生成的工程文件（用编辑器打开工程就长回来）
+pico/Library/
+pico/Temp/
+pico/Obj/
+pico/Logs/
+pico/MemoryCaptures/
+pico/UserSettings/
+pico/*.csproj
+pico/*.unityproj
+pico/*.sln
+
+# 构建产物：APK 有 21 MB，跟着提交会让仓库迅速臃肿（要发版用 GitHub Releases，或跑 scripts/unity.sh apk 自己出包）
+Build/Android/
+Build/Launcher/
+*.apk
+
+# 临时日志
+*.log

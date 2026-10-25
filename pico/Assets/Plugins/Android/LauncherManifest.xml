@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Unity 生成的 launcher 清单用 @string/app_name，而 unityLibrary 的清单里是硬编码的产品名
+  「VR 学习启动器」，AGP 的清单合并会因为同一个 android:label 两边不一致而失败。
+  这里显式统一成中文应用名，并用 tools:replace 让合并时以本文件为准。
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:installLocation="preferExternal">
+  <supports-screens android:smallScreens="true"
+                    android:normalScreens="true"
+                    android:largeScreens="true"
+                    android:xlargeScreens="true"
+                    android:anyDensity="true" />
+  <application android:label="VR 学习启动器"
+               android:icon="@mipmap/app_icon"
+               tools:replace="android:label" />
+</manifest>

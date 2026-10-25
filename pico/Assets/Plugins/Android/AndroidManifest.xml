@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PICO 端启动器需要的权限：查询/启动其它应用、读取前台使用时长 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.school.vr.launcher"
+          xmlns:tools="http://schemas.android.com/tools" android:installLocation="preferExternal">
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+                   tools:ignore="ProtectedPermissions" />
+  <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
+  <uses-feature android:name="android.hardware.vr.headtracking" android:required="false" />
+  <!-- usesCleartextTraffic：机房后台是 http://局域网IP:8787，没有证书。
+       targetSdk 33 起 Android 默认**禁掉明文 HTTP**，不加这一条，头显每次请求都被系统挡在应用里
+       （报 "CLEARTEXT communication to 192.168.x.x not permitted"），表现就是后台一直显示离线、
+       而 PC 去敲它的 8790 反倒答得好好的 —— 因为那是别人连进来，不归这条管。 -->
+  <application android:label="VR 学习启动器" android:usesCleartextTraffic="true"
+               android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+    <activity android:name="com.unity3d.player.UnityPlayerActivity"
+              android:launchMode="singleTask" android:screenOrientation="fullSensor"
+              android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+              android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+    </activity>
+  </application>
+</manifest>
